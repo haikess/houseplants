@@ -16,7 +16,7 @@ public class HouseplantController {
 	@ResponseBody
 	@RequestMapping("/index")	
 	public String Hello() {
-		return "testi";
+		return "testi2";
 	}
 	
 
