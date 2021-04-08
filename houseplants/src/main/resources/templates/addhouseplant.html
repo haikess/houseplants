@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Houseplants</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<h2>Add houseplant</h2>
+		<div class="col-md-4">
+			<form th:object="${houseplant}" th:action="@{save}" action="#"
+				method="post">
+
+				<label for="name">Name</label> <input type="text" id="name"
+					th:field="*{name}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="lightNeed">Light Need</label> <input type="text" id="lightNeed"
+					th:field="*{lightNeed}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="fertilizer">Fertilizer</label> <input type="text" id="fertilizer"
+					th:field="*{fertilizer}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="watering">Watering</label> <input type="text" id="watering"
+					th:field="*{watering}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="dateOfPurchase">Date of Purchase</label> <input type="text" id="dateOfPurchase"
+					th:field="*{dateOfPurchase}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="classificationlist">Classification</label> <select id="classificationlist"
+					th:field="*{classification}" class="form-control">
+					<option th:each="classification: ${classificationList}"
+						th:value="${classification.id}" th:text="${classification.name}"></option>
+				</select> <input class="btn btn-success" type="submit" value="Save"></input>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Classifications</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Classifications</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+		</tr>
+		<tbody>
+			<tr th:each="classification : ${classifications}">
+				<td th:text="${classification.name}"></td>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Houseplants</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Houseplants</h1>
+		<table>
+		<tr>
+			<th>Name</th>
+			<th>Light need</th>
+			<th>Fertilizer</th>
+			<th>Watering</th>
+			<th>Date of Purchase</th>
+			<th>Classification</th>
+			</tr>
+			<tr th:each="houseplant : ${houseplants}">
+				<td th:text="${houseplant.name}"></td>
+				<td th:text="${houseplant.lightNeed}"></td>
+				<td th:text="${houseplant.fertilizer}"></td>
+				<td th:text="${houseplant.watering}"></td>
+				<td th:text="${houseplant.dateOfPurchase}"></td>
+				<td th:text="${houseplant.classification.name}"></td>
+				<td><a th:href="@{/delete/{id}(id=${houseplant.id})}">Delete</a></td>
+	</table>
+	<a href="/add" >Add new</a>
+</body>
+</html>

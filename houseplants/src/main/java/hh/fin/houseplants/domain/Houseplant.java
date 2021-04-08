@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Houseplant {
@@ -16,10 +20,15 @@ public class Houseplant {
 	private String fertilizer;
 	private String watering;
 	private String dateOfPurchase;
-	private String classification;
+	
+	@ManyToOne // Category @ManyToOne Category
+	@JoinColumn(name = "classificationid") // foreign key of table
+	
+	@JsonIgnoreProperties ("houseplants") 
 
-	public Houseplant(String name, String lightNeed, String fertilizer, String watering, String dateOfPurchase,
-			String classification) {
+	private Classification classification;
+
+	public Houseplant(String name, String lightNeed, String fertilizer, String watering, String dateOfPurchase, Classification classification) {
 		super();
 		this.name = name;
 		this.lightNeed = lightNeed;
@@ -55,8 +64,8 @@ public class Houseplant {
 	public String getDateOfPurchase() {
 		return dateOfPurchase;
 	}
-
-	public String getClassification() {
+	
+	public Classification getClassification() {
 		return classification;
 	}
 
@@ -83,8 +92,8 @@ public class Houseplant {
 	public void setDateOfPurchase(String dateOfPurchase) {
 		this.dateOfPurchase = dateOfPurchase;
 	}
-
-	public void setClassification(String classification) {
+	
+	public void setClassification(Classification classification) {
 		this.classification = classification;
 	}
 
@@ -94,5 +103,7 @@ public class Houseplant {
 				+ ", watering=" + watering + ", dateOfPurchase=" + dateOfPurchase + ", classification=" + classification
 				+ "]";
 	}
+
+	
 
 }
