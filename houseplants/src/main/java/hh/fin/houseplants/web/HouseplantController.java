@@ -1,6 +1,5 @@
 package hh.fin.houseplants.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +36,12 @@ public class HouseplantController {
         return (List<Houseplant>) hpRepository.findAll();
     } 
 	
+	// not having a database so creating without it:
 	@RequestMapping(value = "/allhouseplants", method = RequestMethod.GET)
 	public String getAllHouseplant(Model model) {
-		//ei vielä haeta kirjalistaa tietokannasta -> tehdään tyhjä kirjalista
 
 		List<Houseplant> houseplants = (List<Houseplant>) hpRepository.findAll();
-		//String title, String author, String year, String isbn, Integer price
-		//books.add(new Book("Harry Potter", "J.K. Rowling", "2015", "9789513184872", 19));
 		
-		//talletetaan kirjalista model-mapin attribuuttiolioksi, jotka näkee myös thymeleaf-templaten
 		model.addAttribute("houseplants", houseplants);
 		return "houseplantlist"; // houseplantlist.html
 	}
@@ -58,11 +54,20 @@ public class HouseplantController {
 			return "addhouseplant";
 		}
 		
-		//save new houseplant
+		// save new houseplant
 		@RequestMapping(value = "/save", method = RequestMethod.POST)
 		public String save(Houseplant houseplant) {
 			hpRepository.save(houseplant);
 			return "redirect:/allhouseplants";
+		}
+		
+		// edit 
+		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+		public String editBook(@PathVariable(value="id") Long houseplantId, Model model) {
+			model.addAttribute("houseplant", hpRepository.findById(houseplantId));
+			model.addAttribute("classificationList", classificationRepository.findAll());
+			System.out.println("cl size: " + ((List)model.getAttribute("classificationList")).size());
+			return "edithouseplant";
 		}
 		
 		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

@@ -23,6 +23,7 @@
 				<td th:text="${houseplant.dateOfPurchase}"></td>
 				<td th:text="${houseplant.classification.name}"></td>
 				<td><a th:href="@{/delete/{id}(id=${houseplant.id})}">Delete</a></td>
+				<td><a th:href="@{/edit/{id}(id=${houseplant.id})}">Edit</a></td>
 	</table>
 	<a href="/add" >Add new</a>
 </body>
