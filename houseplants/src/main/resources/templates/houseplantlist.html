@@ -1,30 +1,61 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
 <title>Houseplants</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+            window.location.replace('allhouseplants?lang=' + selectedOption);
+        }
+    });
+});
+</script>
 </head>
 <body>
 	<h1>Houseplants</h1>
-		<table>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign out" class="btn btn-sm btn-danger" />
+		</form>
+		<span th:text="#{lang.change}"></span>: <select id="locales">
+			<option value=""></option>
+			<option value="en" th:text="#{lang.en}"></option>
+			<option value="fi" th:text="#{lang.fi}"></option>
+		</select>
+	</div>
+
+	<table>
 		<tr>
-			<th>Name</th>
-			<th>Light need</th>
-			<th>Fertilizer</th>
-			<th>Watering</th>
-			<th>Date of Purchase</th>
-			<th>Classification</th>
-			</tr>
-			<tr th:each="houseplant : ${houseplants}">
-				<td th:text="${houseplant.name}"></td>
-				<td th:text="${houseplant.lightNeed}"></td>
-				<td th:text="${houseplant.fertilizer}"></td>
-				<td th:text="${houseplant.watering}"></td>
-				<td th:text="${houseplant.dateOfPurchase}"></td>
-				<td th:text="${houseplant.classification.name}"></td>
-				<td><a th:href="@{/delete/{id}(id=${houseplant.id})}">Delete</a></td>
-				<td><a th:href="@{/edit/{id}(id=${houseplant.id})}">Edit</a></td>
+			<th th:text="#{name}"></th>
+			<th th:text="#{light_need}"></th>
+			<th th:text="#{fertilizer}"></th>
+			<th th:text="#{watering}"></th>
+			<th th:text="#{date_of_purchase}"></th>
+			<th th:text="#{classification}"></th>
+		</tr>
+		<tr th:each="houseplant : ${houseplants}">
+			<td th:text="${houseplant.name}"></td>
+			<td th:text="${houseplant.lightNeed}"></td>
+			<td th:text="${houseplant.fertilizer}"></td>
+			<td th:text="${houseplant.watering}"></td>
+			<td th:text="${houseplant.dateOfPurchase}"></td>
+			<td th:text="${houseplant.classification.name}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/delete/{id}(id=${houseplant.id})}">Delete</a></td>
+			<!--  <td><a th:href="@{/delete/{id}(id=${houseplant.id})}">Delete</a></td> -->
+			<td><a th:href="@{/edit/{id}(id=${houseplant.id})}">Edit</a></td>
 	</table>
-	<a href="/add" >Add new</a>
+	<a href="/add">Add new</a>
 </body>
 </html>

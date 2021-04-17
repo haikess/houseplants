@@ -21,8 +21,8 @@ public class Houseplant {
 	private String watering;
 	private String dateOfPurchase;
 	
-	@ManyToOne // Category @ManyToOne Category
-	@JoinColumn(name = "classificationid") // foreign key of table
+	@ManyToOne
+	@JoinColumn(name = "classificationid")
 	
 	@JsonIgnoreProperties ("houseplants") 
 
