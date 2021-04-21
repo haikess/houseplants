@@ -81,11 +81,11 @@ public class HouseplantsApplication implements WebMvcConfigurer {
 			classificationRepository.save(c3);
 			classificationRepository.save(c4);
 
-			Houseplant hp1 = new Houseplant("Appelsiinipuu", "Suuri", "Ei ole", "Lehtien nuokkuessa", "2010", c1);
-			Houseplant hp2 = new Houseplant("Mandariinipuu", "Suuri", "Ei ole", "Kahdesti viikossa", "2011", c1);
+			Houseplant hp1 = new Houseplant("Appelsiinipuu", "Suuri", "Ei ole", "Lehtien nuokkuessa", "2010", c4);
+			Houseplant hp2 = new Houseplant("Mandariinipuu", "Suuri", "Ei ole", "Kahdesti viikossa", "2011", c4);
 			Houseplant hp3 = new Houseplant("Takiainen", "Keväisin suurimmillaan", "Merileväuute", "Joka toinen viikko", "2019", c3);
 			Houseplant hp4 = new Houseplant("Mänty", "Pärjää myös varjoisassa", "Ei ole", "Joka viikko", "2017", c4);
-			Houseplant hp5 = new Houseplant("Pitaija", "Kesällä eniten, talvella ei tarvitse", "Keväisin kevätlannoitetta", "Kerran kuukaudessa", "2018", c3);
+			Houseplant hp5 = new Houseplant("Pitaija", "Kesällä eniten, talvella ei tarvitse paljoa", "Keväisin kevätlannoitetta", "Kerran kuukaudessa", "2018", c3);
 
 			houseplantRepository.save(hp1);
 			houseplantRepository.save(hp2);
