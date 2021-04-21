@@ -1,7 +1,5 @@
 package hh.fin.houseplants;
 
-
-
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -16,7 +14,7 @@ import hh.fin.houseplants.domain.Houseplant;
 import hh.fin.houseplants.domain.HouseplantRepository;
 
 // @RunWith(SpringRunner.class) // JUnit4
-@ExtendWith(SpringExtension.class) // JUnit5
+@ExtendWith(SpringExtension.class) // (JUnit5) Jupiter
 @DataJpaTest
 public class HouseplantRepositoryTest {
 	
@@ -34,7 +32,6 @@ public class HouseplantRepositoryTest {
 	@Test
 	public void createNewHouseplant() {
 		
-		// Houseplant hp1 = new Houseplant("Appelsiinipuu", "Suuri", "Ei ole", "Lehtien nuokkuessa", "2010", c1);
 		Houseplant houseplant = new Houseplant("Kissankello", "Puolivarjo", "Ei ole", "Kerran viikkossa", "2019", new Classification("Viherkasvi"));
 		hpRepository.save(houseplant);
 		assertThat(houseplant.getId()).isNotNull();
